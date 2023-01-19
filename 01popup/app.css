@@ -1,6 +1,11 @@
+@font-face {
+    font-family: "notosans";
+}
+
 * {
     margin:0;
     padding:0;
+    font-family: "notosans";
 }
 
 body {
@@ -60,14 +65,43 @@ body {
     /* animation: zoomIn  재생시간, 딜레이 ..... */
     animation: zoomIn 0.5s 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
+
 #modal-container.unfold.out {
     transform: scale(1);
-    animation: unfoldOut 1s 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+    animation: unfoldOut 1.5s 0.7s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
 
 #modal-container.unfold.out .modal-background .modal {
     /* animation: zoomIn  재생시간, 딜레이 ..... */
-    animation: zoomOut 0.5s 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+    animation: zoomOut 1.5s 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+/* meep 이벤트 만들기 */
+#modal-container.meep {
+    transform: scale(1);
+}
+
+#modal-container.meep .modal-background {
+    background-color: transparent;
+    animation: fadeIn 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+#modal-container.meep .modal-background .modal {
+    transform: translateX(1500);
+    animation: roadRunnerIn 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+#modal-container.meep.out {
+    animation: quickScaleDown 0.1s 0.5s linear forwards;
+}
+
+#modal-container.meep.out .modal-background {
+    background-color: transparent;
+    animation: fadeOut 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+#modal-container.meep.out .modal-background .modal {
+    transform: translateX(1500);
+    animation: roadRunnerOut 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
 
 #modal-container .modal-background {
@@ -138,5 +172,60 @@ body {
     }
     100% {
         transform: scaleX(0) scaleY(0.005);
+    }
+}
+
+@keyframes roadRunnerIn {
+    0% {
+        transform: translateX(-1500px) skewX(30deg) scaleX(1.3)
+    }
+    70% {
+        transform: translateX(50px) skewX(0deg) scaleX(0.9)
+    }
+    100% {
+        transform: translateX(0px) skewX(0deg) scaleX(1)
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        background-color: transparent;
+    }
+    100% {
+        background-color: rgba(0,0,0,0.7);
+    }
+}
+
+@keyframes roadRunnerOut {
+    0% {
+        transform: translateX(-0px) skewX(0deg) scaleX(1)
+    }
+    30% {
+        transform: translateX(-100px) skewX(-5deg) scaleX(0.9)
+    }
+    100% {
+        transform: translateX(1500px) skewX(30deg) scaleX(1.3)
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        background-color: rgba(0,0,0,0.7);
+    }
+    100% {
+        background-color: transparent;
+    }
+
+}
+
+@keyframes quickScaleDown {
+    0% {
+        transform: scale(1);
+    }
+    99% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(0);
     }
 }
